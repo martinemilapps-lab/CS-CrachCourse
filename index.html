@@ -3,94 +3,112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CS for Vibe Coders | From Prompting to Pure Foundations</title>
+  <title>Foundational CS for Vibe Coders</title>
   <style>
     :root {
-      --bg: #0a0e1a;
-      --card-bg: rgba(23, 32, 54, 0.75);
-      --card-border: rgba(99, 102, 241, 0.2);
-      --accent: #6366f1;
-      --accent-glow: #818cf8;
-      --secondary: #06b6d4;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --success: #10b981;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --accent: #4f46e5;
+      --accent-light: #eef2ff;
+      --accent-hover: #4338ca;
+      --secondary: #0284c7;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-body: #334155;
+      --tag-bg: #f1f5f9;
+      --tag-border: #e2e8f0;
+      --tag-text: #475569;
+      --callout-bg: #f0f7ff;
+      --callout-border: #0284c7;
+      --success: #16a34a;
+      --yt-red: #e11d48;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-hover: 0 12px 24px -4px rgba(79, 70, 229, 0.08), 0 4px 8px -2px rgba(0, 0, 0, 0.04);
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-body);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
       line-height: 1.6;
-      padding-bottom: 80px;
+      padding-bottom: 90px;
     }
-    .glow-bg {
-      position: fixed;
-      top: -220px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 800px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(6, 182, 212, 0.1) 50%, transparent 80%);
-      z-index: -1;
-      pointer-events: none;
-    }
+
     header {
-      max-width: 1100px;
+      max-width: 1040px;
       margin: 0 auto;
-      padding: 60px 24px 30px;
+      padding: 56px 24px 32px;
       text-align: center;
     }
+
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       padding: 6px 16px;
       border-radius: 9999px;
-      background: rgba(99, 102, 241, 0.15);
-      border: 1px solid var(--card-border);
-      color: var(--accent-glow);
-      font-size: 0.85rem;
-      font-weight: 600;
+      background: var(--accent-light);
+      border: 1px solid #c7d2fe;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
       letter-spacing: 0.5px;
       text-transform: uppercase;
       margin-bottom: 20px;
     }
+
     h1 {
-      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
       font-weight: 800;
-      letter-spacing: -1px;
-      background: linear-gradient(135deg, #ffffff 40%, var(--accent-glow) 75%, var(--secondary) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 18px;
+      letter-spacing: -0.03em;
+      color: var(--text-main);
+      line-height: 1.18;
+      margin-bottom: 16px;
     }
+
     .subtitle {
-      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
       color: var(--text-muted);
-      max-width: 760px;
+      max-width: 740px;
       margin: 0 auto 36px;
     }
+
     .stats-bar {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 16px;
-      max-width: 900px;
-      margin: 0 auto 50px;
+      max-width: 860px;
+      margin: 0 auto 48px;
     }
+
     .stat-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      backdrop-filter: blur(12px);
-      padding: 20px;
-      border-radius: 14px;
+      border-radius: 12px;
+      padding: 18px;
       text-align: center;
+      box-shadow: var(--shadow);
     }
-    .stat-number { font-size: 1.8rem; font-weight: 700; color: var(--secondary); }
-    .stat-label { font-size: 0.85rem; color: var(--text-muted); }
+
+    .stat-number {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
     .controls {
-      max-width: 1100px;
-      margin: 0 auto 36px;
+      max-width: 1040px;
+      margin: 0 auto 32px;
       padding: 0 24px;
       display: flex;
       flex-wrap: wrap;
@@ -98,155 +116,279 @@
       justify-content: space-between;
       align-items: center;
     }
-    .search-box { flex: 1; min-width: 260px; position: relative; }
+
+    .search-box {
+      flex: 1;
+      min-width: 270px;
+      position: relative;
+    }
+
     .search-box input {
       width: 100%;
-      background: rgba(15, 23, 42, 0.8);
+      background: #ffffff;
       border: 1px solid var(--card-border);
       border-radius: 10px;
-      padding: 12px 16px;
-      color: var(--text);
+      padding: 12px 16px 12px 42px;
+      color: var(--text-main);
       font-size: 0.95rem;
       outline: none;
+      box-shadow: var(--shadow);
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
+
+    .search-box input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      width: 18px;
+      height: 18px;
+    }
+
     .progress-tracker {
       display: flex;
       align-items: center;
       gap: 12px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
+      font-weight: 600;
       color: var(--text-muted);
     }
+
     .progress-bar-container {
-      width: 140px;
+      width: 130px;
       height: 8px;
-      background: rgba(255, 255, 255, 0.1);
+      background: #e2e8f0;
       border-radius: 999px;
       overflow: hidden;
     }
+
     .progress-bar-fill {
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, var(--accent), var(--secondary));
       transition: width 0.3s ease;
     }
+
     .container {
-      max-width: 1100px;
+      max-width: 1040px;
       margin: 0 auto;
       padding: 0 24px;
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 26px;
     }
+
     .module-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 30px;
-      backdrop-filter: blur(12px);
-      transition: border-color 0.2s, box-shadow 0.2s;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
     }
+
     .module-card:hover {
-      border-color: rgba(99, 102, 241, 0.5);
-      box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.25);
+      border-color: #cbd5e1;
+      box-shadow: var(--shadow-hover);
     }
+
     .module-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 12px;
+      gap: 14px;
       margin-bottom: 14px;
     }
-    .module-meta { display: flex; align-items: center; gap: 12px; }
+
+    .module-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
     .module-index {
-      background: linear-gradient(135deg, var(--accent), var(--secondary));
-      color: white;
+      background: var(--accent-light);
+      color: var(--accent);
       width: 36px;
       height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 8px;
-      font-weight: 700;
+      font-weight: 800;
+      font-size: 0.95rem;
+      border: 1px solid #c7d2fe;
     }
-    .module-title { font-size: 1.45rem; font-weight: 700; }
+
+    .module-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+
     .checkbox-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
       color: var(--text-muted);
-      padding: 8px 14px;
+      padding: 7px 13px;
       border-radius: 8px;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 600;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
       transition: all 0.2s;
     }
+
+    .checkbox-btn:hover {
+      background: #f1f5f9;
+      color: var(--text-main);
+    }
+
     .checkbox-btn.completed {
-      background: rgba(16, 185, 129, 0.2);
-      border-color: var(--success);
+      background: #ecfdf5;
+      border-color: #86efac;
       color: var(--success);
     }
+
     .why-vibe-coders {
-      background: rgba(99, 102, 241, 0.08);
-      border-left: 3px solid var(--accent-glow);
-      padding: 12px 16px;
+      background: var(--callout-bg);
+      border-left: 4px solid var(--callout-border);
+      padding: 13px 18px;
       border-radius: 0 8px 8px 0;
-      margin: 14px 0 20px;
-      font-size: 0.95rem;
+      margin: 14px 0 18px;
+      font-size: 0.93rem;
+      color: var(--text-body);
     }
+
     .why-vibe-coders strong {
-      color: var(--accent-glow);
+      color: var(--secondary);
       display: block;
       margin-bottom: 3px;
       text-transform: uppercase;
-      font-size: 0.75rem;
-      letter-spacing: 0.8px;
+      font-size: 0.72rem;
+      letter-spacing: 0.6px;
+      font-weight: 800;
     }
-    .topic-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+
+    .topic-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
     .topic-tag {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: #cbd5e1;
-      font-size: 0.8rem;
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      color: var(--tag-text);
+      font-size: 0.78rem;
+      font-weight: 500;
       padding: 3px 10px;
       border-radius: 6px;
     }
+
+    .resources-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+    }
+
     .resources-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 14px;
     }
+
     .resource-card {
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 16px;
+      padding: 15px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       gap: 12px;
     }
-    .resource-header { display: flex; align-items: flex-start; gap: 10px; }
-    .yt-icon { color: #ef4444; flex-shrink: 0; margin-top: 2px; }
-    .resource-info h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 2px; }
-    .resource-channel { font-size: 0.8rem; color: var(--text-muted); }
-    .resource-links { display: flex; align-items: center; gap: 10px; margin-top: auto; }
+
+    .resource-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .yt-icon {
+      color: var(--yt-red);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .resource-info h4 {
+      font-size: 0.93rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.35;
+      margin-bottom: 3px;
+    }
+
+    .resource-channel {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .resource-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: auto;
+    }
+
     .btn-watch {
-      background: #ef4444;
-      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--yt-red);
+      color: #ffffff;
       text-decoration: none;
-      padding: 6px 12px;
+      padding: 6px 13px;
       border-radius: 6px;
       font-size: 0.8rem;
       font-weight: 600;
+      transition: background-color 0.15s;
     }
+
+    .btn-watch:hover {
+      background: #be123c;
+    }
+
     .btn-embed {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--text);
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: var(--text-body);
       cursor: pointer;
       padding: 6px 12px;
       border-radius: 6px;
       font-size: 0.8rem;
+      font-weight: 600;
+      transition: background-color 0.15s, border-color 0.15s;
     }
+
+    .btn-embed:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
     .embed-player {
       display: none;
       margin-top: 14px;
@@ -255,22 +397,38 @@
       height: 0;
       overflow: hidden;
       border-radius: 10px;
+      border: 1px solid var(--card-border);
     }
+
     .embed-player iframe {
       position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%; border: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
-    .embed-player.active { display: block; }
+
+    .embed-player.active {
+      display: block;
+    }
+
     footer {
       text-align: center;
-      margin-top: 70px;
+      margin-top: 64px;
+      padding: 24px;
+      border-top: 1px solid var(--card-border);
       color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 0.86rem;
+    }
+
+    @media (max-width: 640px) {
+      .module-card { padding: 20px; }
+      .module-header { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-  <div class="glow-bg"></div>
 
   <header>
     <div class="badge">Curriculum for the AI Era</div>
@@ -280,45 +438,72 @@
     </p>
 
     <div class="stats-bar">
-      <div class="stat-card"><div class="stat-number">10</div><div class="stat-label">Core Modules</div></div>
-      <div class="stat-card"><div class="stat-number">100%</div><div class="stat-label">Free YouTube Resources</div></div>
-      <div class="stat-card"><div class="stat-number">MIT • Harvard</div><div class="stat-label">Top University Lectures</div></div>
-      <div class="stat-card"><div class="stat-number">Zero</div><div class="stat-label">Prerequisites Assumed</div></div>
+      <div class="stat-card">
+        <div class="stat-number">10</div>
+        <div class="stat-label">Core Modules</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Free YouTube Resources</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">MIT • Harvard</div>
+        <div class="stat-label">University Lectures</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">Zero</div>
+        <div class="stat-label">Prerequisites Assumed</div>
+      </div>
     </div>
   </header>
 
   <div class="controls">
     <div class="search-box">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
       <input type="text" id="searchInput" placeholder="Search topics (e.g. Memory, SQL, Docker, Big-O, DNS)..." onkeyup="filterModules()">
     </div>
     <div class="progress-tracker">
       <span id="progressText">0 / 10 Completed</span>
-      <div class="progress-bar-container"><div class="progress-bar-fill" id="progressBar"></div></div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressBar"></div>
+      </div>
     </div>
   </div>
 
   <main class="container" id="modulesContainer">
 
-    <!-- 01 -->
-    <article class="module-card" data-module="1" data-keywords="overview abstraction gates logic cpu mental model">
+    <!-- MODULE 01 -->
+    <article class="module-card" data-module="1" data-keywords="overview abstraction gates logic cpu mental model crash course">
       <div class="module-header">
-        <div class="module-meta"><div class="module-index">01</div><h2 class="module-title">The Big Picture & Mental Models</h2></div>
-        <button class="checkbox-btn" onclick="toggleComplete(1, this)"><span>Mark as Finished</span></button>
+        <div class="module-meta">
+          <div class="module-index">01</div>
+          <h2 class="module-title">The Big Picture & Mental Models</h2>
+        </div>
+        <button class="checkbox-btn" onclick="toggleComplete(1, this)">
+          <span>Mark as Finished</span>
+        </button>
       </div>
       <div class="why-vibe-coders">
         <strong>Why Vibe Coders Need This:</strong>
-        Without knowing how transistors form logic gates and how gates form an operating system, software feels like unpredictable magic. This 40-episode series establishes your foundational intuition.
+        Without understanding how transistors form logic gates and how gates form an operating system, software feels like unpredictable magic. This 40-episode series provides a crisp, comprehensive mental model from hardware to applications.
       </div>
       <div class="topic-list">
-        <span class="topic-tag">Logic Gates</span><span class="topic-tag">ALU & Registers</span><span class="topic-tag">Instruction Cycles</span><span class="topic-tag">Abstraction Layers</span>
+        <span class="topic-tag">Logic Gates</span>
+        <span class="topic-tag">ALU & Registers</span>
+        <span class="topic-tag">Instruction Cycles</span>
+        <span class="topic-tag">Abstraction Layers</span>
+        <span class="topic-tag">Operating Systems Overview</span>
       </div>
+      <div class="resources-title">Curated Video Resources</div>
       <div class="resources-grid">
         <div class="resource-card">
           <div class="resource-header">
             <svg class="yt-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
             <div class="resource-info">
               <h4>Crash Course: Computer Science</h4>
-              <p class="resource-channel">CrashCourse • 40 Video Complete Playlist</p>
+              <p class="resource-channel">CrashCourse • 40-Video Curated Playlist</p>
             </div>
           </div>
           <div class="resource-links">
@@ -328,19 +513,29 @@
       </div>
     </article>
 
-    <!-- 02 -->
-    <article class="module-card" data-module="2" data-keywords="c memory pointers stack heap malloc cs50 harvard">
+    <!-- MODULE 02 -->
+    <article class="module-card" data-module="2" data-keywords="c memory pointers stack heap malloc cs50 harvard david malan">
       <div class="module-header">
-        <div class="module-meta"><div class="module-index">02</div><h2 class="module-title">Low-Level Thinking: Memory, Pointers & C</h2></div>
-        <button class="checkbox-btn" onclick="toggleComplete(2, this)"><span>Mark as Finished</span></button>
+        <div class="module-meta">
+          <div class="module-index">02</div>
+          <h2 class="module-title">Low-Level Thinking: Memory, Pointers & C</h2>
+        </div>
+        <button class="checkbox-btn" onclick="toggleComplete(2, this)">
+          <span>Mark as Finished</span>
+        </button>
       </div>
       <div class="why-vibe-coders">
         <strong>Why Vibe Coders Need This:</strong>
-        High-level languages hide memory management. When AI code causes memory exhaustion or silent mutation bugs, understanding pointers and the stack vs heap makes the problem obvious.
+        High-level languages conceal memory allocation. When AI code triggers silent state mutation or memory spikes, knowing how pointers, stack frames, and the heap operate makes bugs instantly recognizable.
       </div>
       <div class="topic-list">
-        <span class="topic-tag">Memory Addresses</span><span class="topic-tag">Pointers & Dereferencing</span><span class="topic-tag">Stack vs Heap</span><span class="topic-tag">Manual Memory (malloc/free)</span>
+        <span class="topic-tag">Memory Addresses & RAM</span>
+        <span class="topic-tag">Pointers & Dereferencing</span>
+        <span class="topic-tag">Stack vs Heap</span>
+        <span class="topic-tag">Manual Memory Allocation</span>
+        <span class="topic-tag">Segmentation Faults</span>
       </div>
+      <div class="resources-title">Curated Video Resources</div>
       <div class="resources-grid">
         <div class="resource-card">
           <div class="resource-header">
@@ -359,26 +554,36 @@
       </div>
     </article>
 
-    <!-- 03 -->
-    <article class="module-card" data-module="3" data-keywords="hardware architecture cpu ben eater breadboard clock bus">
+    <!-- MODULE 03 -->
+    <article class="module-card" data-module="3" data-keywords="hardware architecture cpu ben eater breadboard clock bus registers assembly">
       <div class="module-header">
-        <div class="module-meta"><div class="module-index">03</div><h2 class="module-title">Computer Architecture: From Breadboard to CPU</h2></div>
-        <button class="checkbox-btn" onclick="toggleComplete(3, this)"><span>Mark as Finished</span></button>
+        <div class="module-meta">
+          <div class="module-index">03</div>
+          <h2 class="module-title">Computer Architecture: From Breadboard to CPU</h2>
+        </div>
+        <button class="checkbox-btn" onclick="toggleComplete(3, this)">
+          <span>Mark as Finished</span>
+        </button>
       </div>
       <div class="why-vibe-coders">
         <strong>Why Vibe Coders Need This:</strong>
-        Building an 8-bit programmable computer on breadboards strips away the mystery of assembly, clock cycles, and instruction registers.
+        Building an 8-bit programmable computer from wire and chips reveals how instructions are fetched, decoded, and executed on physical hardware, permanently clarifying assembly, registers, and machine execution.
       </div>
       <div class="topic-list">
-        <span class="topic-tag">Clock Modules</span><span class="topic-tag">CPU Registers</span><span class="topic-tag">Bus Contention</span><span class="topic-tag">Microcode & Machine Code</span>
+        <span class="topic-tag">Clock Modules & Cycles</span>
+        <span class="topic-tag">CPU Registers</span>
+        <span class="topic-tag">Bus Contention</span>
+        <span class="topic-tag">ALU Wiring</span>
+        <span class="topic-tag">Microcode & Machine Instructions</span>
       </div>
+      <div class="resources-title">Curated Video Resources</div>
       <div class="resources-grid">
         <div class="resource-card">
           <div class="resource-header">
             <svg class="yt-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
             <div class="resource-info">
               <h4>Building an 8-bit Breadboard Computer</h4>
-              <p class="resource-channel">Ben Eater • 44-Video Hardware Series</p>
+              <p class="resource-channel">Ben Eater • 44-Video Series</p>
             </div>
           </div>
           <div class="resource-links">
@@ -388,19 +593,29 @@
       </div>
     </article>
 
-    <!-- 04 -->
-    <article class="module-card" data-module="4" data-keywords="algorithms dsa big-o trees graphs mit abdul bari">
+    <!-- MODULE 04 -->
+    <article class="module-card" data-module="4" data-keywords="algorithms dsa big-o trees graphs mit abdul bari hash tables complexity">
       <div class="module-header">
-        <div class="module-meta"><div class="module-index">04</div><h2 class="module-title">Data Structures & Algorithms (DSA)</h2></div>
-        <button class="checkbox-btn" onclick="toggleComplete(4, this)"><span>Mark as Finished</span></button>
+        <div class="module-meta">
+          <div class="module-index">04</div>
+          <h2 class="module-title">Data Structures & Algorithms (DSA)</h2>
+        </div>
+        <button class="checkbox-btn" onclick="toggleComplete(4, this)">
+          <span>Mark as Finished</span>
+        </button>
       </div>
       <div class="why-vibe-coders">
         <strong>Why Vibe Coders Need This:</strong>
-        When a prototype slows down with 10,000 items, knowing why an O(1) hash table outperforms an O(n) array lookup prevents severe scaling issues.
+        When AI writes nested loops over growing lists, systems stall. Understanding why an O(1) hash map crushes an O(n) array lookup is what keeps real-world applications responsive under load.
       </div>
       <div class="topic-list">
-        <span class="topic-tag">Big-O Complexity</span><span class="topic-tag">Hash Maps</span><span class="topic-tag">Binary Trees & Graphs</span><span class="topic-tag">Dynamic Programming</span>
+        <span class="topic-tag">Big-O Time & Space Complexity</span>
+        <span class="topic-tag">Hash Tables & Maps</span>
+        <span class="topic-tag">Binary Trees & Graphs</span>
+        <span class="topic-tag">BFS & DFS Traversal</span>
+        <span class="topic-tag">Dynamic Programming</span>
       </div>
+      <div class="resources-title">Curated Video Resources</div>
       <div class="resources-grid">
         <div class="resource-card">
           <div class="resource-header">
@@ -429,19 +644,29 @@
       </div>
     </article>
 
-    <!-- 05 -->
-    <article class="module-card" data-module="5" data-keywords="operating systems linux bash threads processes deadlocks">
+    <!-- MODULE 05 -->
+    <article class="module-card" data-module="5" data-keywords="operating systems linux bash threads processes deadlocks virtual memory freecodecamp">
       <div class="module-header">
-        <div class="module-meta"><div class="module-index">05</div><h2 class="module-title">Operating Systems & Linux Fundamentals</h2></div>
-        <button class="checkbox-btn" onclick="toggleComplete(5, this)"><span>Mark as Finished</span></button>
+        <div class="module-meta">
+          <div class="module-index">05</div>
+          <h2 class="module-title">Operating Systems & Linux Fundamentals</h2>
+        </div>
+        <button class="checkbox-btn" onclick="toggleComplete(5, this)">
+          <span>Mark as Finished</span>
+        </button>
       </div>
       <div class="why-vibe-coders">
         <strong>Why Vibe Coders Need This:</strong>
-        When deployment servers crash with OOM (Out of Memory) or race conditions on async operations, knowing how the kernel schedules threads and allocates virtual memory is essential.
+        When production deployments crash from out-of-memory errors or concurrency deadlocks on asynchronous promises, knowing how the kernel schedules threads and isolates processes is critical.
       </div>
       <div class="topic-list">
-        <span class="topic-tag">Kernel vs User Space</span><span class="topic-tag">Threads & Processes</span><span class="topic-tag">Concurrency & Mutexes</span><span class="topic-tag">Virtual Memory</span>
+        <span class="topic-tag">Kernel vs User Space</span>
+        <span class="topic-tag">Processes vs Threads</span>
+        <span class="topic-tag">Concurrency & Mutexes</span>
+        <span class="topic-tag">Virtual Memory & Paging</span>
+        <span class="topic-tag">Linux Permissions & Shell</span>
       </div>
+      <div class="resources-title">Curated Video Resources</div>
       <div class="resources-grid">
         <div class="resource-card">
           <div class="resource-header">
@@ -453,119 +678,201 @@
           </div>
           <div class="resource-links">
             <a class="btn-watch" href="http://www.youtube.com/watch?v=yK1uBHPdp30" target="_blank" rel="noopener">Watch Video</a>
-            <button class="btn-embed" onclick="toggleEmbed('embed-5', 'yK1uBHPdp30')">Toggle Player</button>
+            <button class="btn-embed" onclick="toggleEmbed('embed-5-1', 'yK1uBHPdp30')">Toggle Player</button>
           </div>
-          <div class="embed-player" id="embed-5"></div>
+          <div class="embed-player" id="embed-5-1"></div>
+        </div>
+        <div class="resource-card">
+          <div class="resource-header">
+            <svg class="yt-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            <div class="resource-info">
+              <h4>Linux Operating System - Crash Course</h4>
+              <p class="resource-channel">freeCodeCamp.org • Terminal & Shell Essentials</p>
+            </div>
+          </div>
+          <div class="resource-links">
+            <a class="btn-watch" href="http://www.youtube.com/watch?v=ROjZy1WbCIA" target="_blank" rel="noopener">Watch Video</a>
+            <button class="btn-embed" onclick="toggleEmbed('embed-5-2', 'ROjZy1WbCIA')">Toggle Player</button>
+          </div>
+          <div class="embed-player" id="embed-5-2"></div>
         </div>
       </div>
     </article>
 
-    <!-- 06 -->
-    <article class="module-card" data-module="6" data-keywords="networking tcp ip dns http https cors sockets">
+    <!-- MODULE 06 -->
+    <article class="module-card" data-module="6" data-keywords="networking tcp ip dns http https cors sockets websocket freecodecamp">
       <div class="module-header">
-        <div class="module-meta"><div class="module-index">06</div><h2 class="module-title">Computer Networking & The Internet</h2></div>
-        <button class="checkbox-btn" onclick="toggleComplete(6, this)"><span>Mark as Finished</span></button>
+        <div class="module-meta">
+          <div class="module-index">06</div>
+          <h2 class="module-title">Computer Networking & The Internet</h2>
+        </div>
+        <button class="checkbox-btn" onclick="toggleComplete(6, this)">
+          <span>Mark as Finished</span>
+        </button>
       </div>
       <div class="why-vibe-coders">
         <strong>Why Vibe Coders Need This:</strong>
-        CORS errors, 502 Bad Gateway responses, and SSL Handshake failures are confusing until you understand the TCP handshake, DNS lookup, and HTTP header specifications.
+        CORS violations, 502 Bad Gateway responses, and SSL handshake failures become simple fixes once you understand how the TCP handshake, DNS lookups, and HTTP headers actually function.
       </div>
       <div class="topic-list">
-        <span class="topic-tag">TCP/IP & UDP</span><span class="topic-tag">DNS Resolution</span><span class="topic-tag">TLS / SSL</span><span class="topic-tag">WebSockets & HTTP/2</span>
+        <span class="topic-tag">OSI Model & TCP/IP</span>
+        <span class="topic-tag">DNS Resolution</span>
+        <span class="topic-tag">TLS / HTTPS Handshake</span>
+        <span class="topic-tag">CORS & Security Headers</span>
+        <span class="topic-tag">WebSockets & HTTP/2</span>
       </div>
+      <div class="resources-title">Curated Video Resources</div>
       <div class="resources-grid">
         <div class="resource-card">
           <div class="resource-header">
             <svg class="yt-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
             <div class="resource-info">
               <h4>Computer Networking Fundamentals</h4>
-              <p class="resource-channel">freeCodeCamp.org • 12hr Course</p>
+              <p class="resource-channel">freeCodeCamp.org • 12hr Complete Guide</p>
             </div>
           </div>
           <div class="resource-links">
             <a class="btn-watch" href="http://www.youtube.com/watch?v=fQbBPa0ADvs" target="_blank" rel="noopener">Watch Video</a>
-            <button class="btn-embed" onclick="toggleEmbed('embed-6', 'fQbBPa0ADvs')">Toggle Player</button>
+            <button class="btn-embed" onclick="toggleEmbed('embed-6-1', 'fQbBPa0ADvs')">Toggle Player</button>
           </div>
-          <div class="embed-player" id="embed-6"></div>
+          <div class="embed-player" id="embed-6-1"></div>
+        </div>
+        <div class="resource-card">
+          <div class="resource-header">
+            <svg class="yt-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            <div class="resource-info">
+              <h4>How Does the Internet Work?</h4>
+              <p class="resource-channel">freeCodeCamp.org • Visual 1.7hr Overview</p>
+            </div>
+          </div>
+          <div class="resource-links">
+            <a class="btn-watch" href="http://www.youtube.com/watch?v=zN8YNNHcaZc" target="_blank" rel="noopener">Watch Video</a>
+            <button class="btn-embed" onclick="toggleEmbed('embed-6-2', 'zN8YNNHcaZc')">Toggle Player</button>
+          </div>
+          <div class="embed-player" id="embed-6-2"></div>
         </div>
       </div>
     </article>
 
-    <!-- 07 -->
-    <article class="module-card" data-module="7" data-keywords="databases sql postgres indexing acid transactions">
+    <!-- MODULE 07 -->
+    <article class="module-card" data-module="7" data-keywords="databases sql postgres indexing b-trees acid transactions harvard cs50">
       <div class="module-header">
-        <div class="module-meta"><div class="module-index">07</div><h2 class="module-title">Databases, SQL & Storage Engines</h2></div>
-        <button class="checkbox-btn" onclick="toggleComplete(7, this)"><span>Mark as Finished</span></button>
+        <div class="module-meta">
+          <div class="module-index">07</div>
+          <h2 class="module-title">Databases, SQL & Storage Engines</h2>
+        </div>
+        <button class="checkbox-btn" onclick="toggleComplete(7, this)">
+          <span>Mark as Finished</span>
+        </button>
       </div>
       <div class="why-vibe-coders">
         <strong>Why Vibe Coders Need This:</strong>
-        ORMs generated by AI often run accidental N+1 queries. Learning index structures (B-Trees) and normalization protects your database from slowdowns and data loss.
+        AI agents often generate unindexed tables or unoptimized ORM joins that trigger N+1 query slowdowns. Learning schema normalization, B-Tree indexes, and ACID guarantees ensures your data layer remains reliable.
       </div>
       <div class="topic-list">
-        <span class="topic-tag">Schema Normalization</span><span class="topic-tag">B-Tree Indexes</span><span class="topic-tag">ACID Transactions</span><span class="topic-tag">Joins & Query Plans</span>
+        <span class="topic-tag">Relational vs NoSQL</span>
+        <span class="topic-tag">B-Tree Indexes</span>
+        <span class="topic-tag">Schema Normalization</span>
+        <span class="topic-tag">ACID Transactions</span>
+        <span class="topic-tag">Query Planning</span>
       </div>
+      <div class="resources-title">Curated Video Resources</div>
       <div class="resources-grid">
         <div class="resource-card">
           <div class="resource-header">
             <svg class="yt-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
             <div class="resource-info">
               <h4>SQL Tutorial - Full Database Course</h4>
-              <p class="resource-channel">freeCodeCamp.org (Mike Dane) • 4.5hr Hands-on</p>
+              <p class="resource-channel">freeCodeCamp.org (Mike Dane) • 4.5hr Practical Guide</p>
             </div>
           </div>
           <div class="resource-links">
             <a class="btn-watch" href="http://www.youtube.com/watch?v=HXV3zeQKqGY" target="_blank" rel="noopener">Watch Video</a>
-            <button class="btn-embed" onclick="toggleEmbed('embed-7', 'HXV3zeQKqGY')">Toggle Player</button>
+            <button class="btn-embed" onclick="toggleEmbed('embed-7-1', 'HXV3zeQKqGY')">Toggle Player</button>
           </div>
-          <div class="embed-player" id="embed-7"></div>
+          <div class="embed-player" id="embed-7-1"></div>
+        </div>
+        <div class="resource-card">
+          <div class="resource-header">
+            <svg class="yt-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            <div class="resource-info">
+              <h4>Harvard CS50’s Intro to Databases with SQL</h4>
+              <p class="resource-channel">Harvard / freeCodeCamp • 11hr Deep Dive</p>
+            </div>
+          </div>
+          <div class="resource-links">
+            <a class="btn-watch" href="http://www.youtube.com/watch?v=WXk7yDqsKxs" target="_blank" rel="noopener">Watch Video</a>
+            <button class="btn-embed" onclick="toggleEmbed('embed-7-2', 'WXk7yDqsKxs')">Toggle Player</button>
+          </div>
+          <div class="embed-player" id="embed-7-2"></div>
         </div>
       </div>
     </article>
 
-    <!-- 08 -->
-    <article class="module-card" data-module="8" data-keywords="git github rebase merge conflicts branch ci cd">
+    <!-- MODULE 08 -->
+    <article class="module-card" data-module="8" data-keywords="git github version control rebase merge conflicts branch freecodecamp">
       <div class="module-header">
-        <div class="module-meta"><div class="module-index">08</div><h2 class="module-title">Software Engineering, Git & Version Control</h2></div>
-        <button class="checkbox-btn" onclick="toggleComplete(8, this)"><span>Mark as Finished</span></button>
+        <div class="module-meta">
+          <div class="module-index">08</div>
+          <h2 class="module-title">Software Engineering, Git & Version Control</h2>
+        </div>
+        <button class="checkbox-btn" onclick="toggleComplete(8, this)">
+          <span>Mark as Finished</span>
+        </button>
       </div>
       <div class="why-vibe-coders">
         <strong>Why Vibe Coders Need This:</strong>
-        When AI rewrites whole files, Git history can become tangled. Knowing Git as a Directed Acyclic Graph (DAG) makes resolving merge conflicts simple.
+        When AI models perform large refactors, Git commit trees can get tangled. Seeing Git as a Directed Acyclic Graph (DAG) of content hashes turns merge conflicts and detached branches into straightforward tasks.
       </div>
       <div class="topic-list">
-        <span class="topic-tag">Git DAG & Hash Commits</span><span class="topic-tag">Branches & HEAD</span><span class="topic-tag">Merge vs Rebase</span><span class="topic-tag">CI/CD Pipelines</span>
+        <span class="topic-tag">Git DAG & Hashes</span>
+        <span class="topic-tag">Branches & HEAD</span>
+        <span class="topic-tag">Merge vs Rebase</span>
+        <span class="topic-tag">Conflict Resolution</span>
+        <span class="topic-tag">CI/CD Integration</span>
       </div>
+      <div class="resources-title">Curated Video Resources</div>
       <div class="resources-grid">
         <div class="resource-card">
           <div class="resource-header">
             <svg class="yt-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
             <div class="resource-info">
               <h4>Git & GitHub Crash Course</h4>
-              <p class="resource-channel">freeCodeCamp.org • Essential Workflow Guide</p>
+              <p class="resource-channel">freeCodeCamp.org • Essential Workflow & Mechanics</p>
             </div>
           </div>
           <div class="resource-links">
             <a class="btn-watch" href="http://www.youtube.com/watch?v=mAFoROnOfHs" target="_blank" rel="noopener">Watch Video</a>
-            <button class="btn-embed" onclick="toggleEmbed('embed-8', 'mAFoROnOfHs')">Toggle Player</button>
+            <button class="btn-embed" onclick="toggleEmbed('embed-8-1', 'mAFoROnOfHs')">Toggle Player</button>
           </div>
-          <div class="embed-player" id="embed-8"></div>
+          <div class="embed-player" id="embed-8-1"></div>
         </div>
       </div>
     </article>
 
-    <!-- 09 -->
-    <article class="module-card" data-module="9" data-keywords="cybersecurity auth tokens xss sql injection csrf jwt">
+    <!-- MODULE 09 -->
+    <article class="module-card" data-module="9" data-keywords="cybersecurity xss sql injection auth jwt tokens harvard cs50">
       <div class="module-header">
-        <div class="module-meta"><div class="module-index">09</div><h2 class="module-title">Cybersecurity & Defensive Engineering</h2></div>
-        <button class="checkbox-btn" onclick="toggleComplete(9, this)"><span>Mark as Finished</span></button>
+        <div class="module-meta">
+          <div class="module-index">09</div>
+          <h2 class="module-title">Cybersecurity & Defensive Engineering</h2>
+        </div>
+        <button class="checkbox-btn" onclick="toggleComplete(9, this)">
+          <span>Mark as Finished</span>
+        </button>
       </div>
       <div class="why-vibe-coders">
         <strong>Why Vibe Coders Need This:</strong>
-        AI-generated apps frequently omit authorization checks, leave endpoints vulnerable to SQL injection, and mishandle JWTs. Understanding defensive design keeps your app secure.
+        AI generation is notorious for omitting input sanitization, exposing sensitive keys, or mishandling JWT expiration. Understanding the OWASP Top 10 ensures your app stays secure from day one.
       </div>
       <div class="topic-list">
-        <span class="topic-tag">SQL Injection</span><span class="topic-tag">XSS & CSRF</span><span class="topic-tag">Password Hashing & Salts</span><span class="topic-tag">Secrets & JWTs</span>
+        <span class="topic-tag">SQL Injection</span>
+        <span class="topic-tag">XSS & CSRF Prevention</span>
+        <span class="topic-tag">Password Hashing & Salts</span>
+        <span class="topic-tag">JWT, Cookies & Sessions</span>
+        <span class="topic-tag">Environment Secrets</span>
       </div>
+      <div class="resources-title">Curated Video Resources</div>
       <div class="resources-grid">
         <div class="resource-card">
           <div class="resource-header">
@@ -577,26 +884,36 @@
           </div>
           <div class="resource-links">
             <a class="btn-watch" href="http://www.youtube.com/watch?v=9HOpanT0GRs" target="_blank" rel="noopener">Watch Video</a>
-            <button class="btn-embed" onclick="toggleEmbed('embed-9', '9HOpanT0GRs')">Toggle Player</button>
+            <button class="btn-embed" onclick="toggleEmbed('embed-9-1', '9HOpanT0GRs')">Toggle Player</button>
           </div>
-          <div class="embed-player" id="embed-9"></div>
+          <div class="embed-player" id="embed-9-1"></div>
         </div>
       </div>
     </article>
 
-    <!-- 10 -->
-    <article class="module-card" data-module="10" data-keywords="ai transformers neural networks backpropagation embeddings 3blue1brown">
+    <!-- MODULE 10 -->
+    <article class="module-card" data-module="10" data-keywords="ai machine learning neural networks transformers 3blue1brown embeddings backpropagation">
       <div class="module-header">
-        <div class="module-meta"><div class="module-index">10</div><h2 class="module-title">AI & Neural Networks: How LLMs Actually Think</h2></div>
-        <button class="checkbox-btn" onclick="toggleComplete(10, this)"><span>Mark as Finished</span></button>
+        <div class="module-meta">
+          <div class="module-index">10</div>
+          <h2 class="module-title">AI & Neural Networks: How LLMs Actually Think</h2>
+        </div>
+        <button class="checkbox-btn" onclick="toggleComplete(10, this)">
+          <span>Mark as Finished</span>
+        </button>
       </div>
       <div class="why-vibe-coders">
         <strong>Why Vibe Coders Need This:</strong>
-        As a vibe coder, LLMs are your primary tool. Understanding vector embeddings, attention mechanisms, and gradient descent will significantly improve your prompting clarity and debugging intuition.
+        As a vibe coder, LLMs are your core engine. Grasping vector embeddings, attention matrices, and temperature sampling sharpens your prompting precision and explains why hallucinations occur.
       </div>
       <div class="topic-list">
-        <span class="topic-tag">Linear Algebra & Matrices</span><span class="topic-tag">Backpropagation</span><span class="topic-tag">Embeddings & Latent Space</span><span class="topic-tag">Attention & Transformers</span>
+        <span class="topic-tag">Linear Algebra & Vectors</span>
+        <span class="topic-tag">Backpropagation</span>
+        <span class="topic-tag">Vector Embeddings</span>
+        <span class="topic-tag">Attention Mechanism</span>
+        <span class="topic-tag">Transformers Architecture</span>
       </div>
+      <div class="resources-title">Curated Video Resources</div>
       <div class="resources-grid">
         <div class="resource-card">
           <div class="resource-header">
@@ -621,6 +938,7 @@
 
   <script>
     const totalModules = 10;
+
     function updateProgress() {
       let completed = 0;
       for (let i = 1; i <= totalModules; i++) {
